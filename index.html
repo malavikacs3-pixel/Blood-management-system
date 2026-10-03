@@ -333,6 +333,34 @@
     <div id="requestResult"></div>
 </section>
 
+<!-- DONOR MANAGEMENT -->
+
+<section class="section" id="donorManagement">
+
+    <h2>Donor Management</h2>
+
+    <p>View and manage registered blood donors.</p>
+
+    <select id="managementBloodGroup">
+        <option value="">All Blood Groups</option>
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+    </select>
+
+    <button onclick="displayDonors()">
+        View Donors
+    </button>
+
+    <div id="managementDonorResult"></div>
+
+</section>
+
 
     <!-- CONTACT -->
 
@@ -667,6 +695,79 @@
             result.innerHTML = output;
 
         }
+        // Display Registered Donors
+
+function displayDonors() {
+
+    const selectedGroup =
+        document.getElementById("managementBloodGroup").value;
+
+    const donors =
+        JSON.parse(localStorage.getItem("donors")) || [];
+
+    const result =
+        document.getElementById("managementDonorResult");
+
+    const filteredDonors = selectedGroup === ""
+        ? donors
+        : donors.filter(function(donor) {
+            return donor.bloodGroup === selectedGroup;
+        });
+
+    if (filteredDonors.length === 0) {
+
+        result.innerHTML =
+            "<h3>No donors found</h3>";
+
+        return;
+    }
+
+    let output =
+        "<h2>Registered Donors</h2>";
+
+    filteredDonors.forEach(function(donor) {
+
+        output +=
+            "<div class='card'>" +
+            "<h3>" + donor.name + "</h3>" +
+            "<p><strong>Age:</strong> " +
+            donor.age + "</p>" +
+            "<p><strong>Blood Group:</strong> " +
+            donor.bloodGroup + "</p>" +
+            "<p><strong>Phone:</strong> " +
+            donor.phone + "</p>" +
+            "<p><strong>Location:</strong> " +
+            donor.location + "</p>" +
+
+            "<button onclick=\"deleteDonor('" +
+            donor.phone +
+            "')\">Delete Donor</button>" +
+
+            "</div>";
+    });
+
+    result.innerHTML = output;
+}
+
+
+// Delete Donor
+
+function deleteDonor(phone) {
+
+    let donors =
+        JSON.parse(localStorage.getItem("donors")) || [];
+
+    donors = donors.filter(function(donor) {
+        return donor.phone !== phone;
+    });
+
+    localStorage.setItem(
+        "donors",
+        JSON.stringify(donors)
+    );
+
+    displayDonors();
+}
         function requestBlood() {
     const name = document.getElementById("patientName").value;
     const age = document.getElementById("patientAge").value;
