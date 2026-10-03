@@ -1,824 +1,910 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blood Management System</title>
 
-    <title>Blood Management System</title>
-
-    <style>
-
-        body {
+<style>
+* {
+    box-sizing: border-box;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-image: url("blood-background.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    padding: 0;
 }
 
-        header {
-            background-color: #b30000;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #333;
+    line-height: 1.6;
+}
 
-        nav {
-            background-color: #800000;
-            padding: 12px;
-            text-align: center;
-        }
+header {
+    background: #b30000;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
+header h1 {
+    font-size: 24px;
+}
 
-        .hero {
-            text-align: center;
-            padding: 50px 20px;
-            background-color: white;
-        }
+nav {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
 
-        .hero h1 {
-            color: #b30000;
-            font-size: 40px;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-        .hero p {
-            font-size: 18px;
-        }
+nav a:hover {
+    text-decoration: underline;
+}
 
-        .buttons {
-            margin-top: 25px;
-        }
+.hero {
+    background: #ffe6e6;
+    text-align: center;
+    padding: 60px 20px;
+}
 
-        button {
-            background-color: #b30000;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            margin: 8px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
+.hero h2 {
+    color: #b30000;
+    font-size: 36px;
+    margin-bottom: 15px;
+}
 
-        button:hover {
-            background-color: #800000;
-        }
+.hero p {
+    font-size: 18px;
+}
 
-        .section {
-            padding: 35px 20px;
-            text-align: center;
-        }
+.home-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+}
 
-        input,
-        select {
-            padding: 10px;
-            margin: 6px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+.home-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 25px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
 
-        #searchResult {
-            margin-top: 20px;
-        }
+.home-card h3 {
+    color: #b30000;
+    margin-bottom: 10px;
+}
 
-        #donorResult {
-            margin-top: 20px;
-        }
+.section {
+    padding: 40px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
 
-        .card {
-            background-color: white;
-            padding: 20px;
-            margin: 15px auto;
-            width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px gray;
-        }
+.section h2 {
+    color: #b30000;
+    text-align: center;
+    margin-bottom: 25px;
+}
 
-        .card h3 {
-            color: #b30000;
-        }
+form {
+    max-width: 600px;
+    margin: auto;
+    background: #fff5f5;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
 
-        footer {
-            background-color: #800000;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            margin-top: 30px;
-        }
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
-    </style>
+button {
+    background: #b30000;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
 
+button:hover {
+    background: #800000;
+}
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fff0f0;
+    border-radius: 8px;
+}
+
+.donor-card,
+.request-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-left: 5px solid #b30000;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.status {
+    font-weight: bold;
+}
+
+.pending {
+    color: orange;
+}
+
+.fulfilled {
+    color: green;
+}
+
+.delete-btn {
+    background: #555;
+    margin-top: 10px;
+}
+
+.delete-btn:hover {
+    background: #333;
+}
+
+footer {
+    background: #800000;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .hero h2 {
+        font-size: 28px;
+    }
+
+    .home-card {
+        width: 100%;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
-
-    <header>
-
-        <h1>Blood Management System</h1>
-
-        <p>Connecting Blood Donors with Those in Need</p>
-
-    </header>
-
-
-    <!-- NAVIGATION -->
+<header>
+    <h1>🩸 Blood Management System</h1>
 
     <nav>
-
-        <a href="#">Home</a>
-
-        <a href="#find">Find Blood</a>
-
+        <a href="#home">Home</a>
+        <a href="#findBlood">Find Blood</a>
         <a href="#donor">Become a Donor</a>
-
         <a href="#request">Request Blood</a>
-
+        <a href="#donorManagement">Donor Management</a>
+        <a href="#requestManagement">Request Management</a>
         <a href="#contact">Contact</a>
-
     </nav>
+</header>
 
+<section id="home" class="hero">
+    <h2>Save Lives, Donate Blood</h2>
+    <p>Connecting blood donors with people in need.</p>
+</section>
 
-    <!-- HOME -->
+<section class="home-cards">
 
-    <section class="hero">
-
-        <h1>Save Lives, Donate Blood</h1>
-
-        <p>Find blood donors quickly and help save lives.</p>
-        
-        <div class="home-cards">
     <div class="home-card">
         <h3>🩸 Find Blood</h3>
-        <p>Find available blood donors quickly.</p>
+        <p>Search for available blood donors by blood group.</p>
     </div>
 
     <div class="home-card">
         <h3>❤️ Become a Donor</h3>
-        <p>Register as a donor and help save lives.</p>
+        <p>Register yourself as a blood donor and help save lives.</p>
     </div>
 
     <div class="home-card">
         <h3>📋 Request Blood</h3>
-        <p>Submit a blood request when needed.</p>
+        <p>Submit a blood request when blood is urgently needed.</p>
     </div>
-</div>
-        <div class="buttons">
 
-            <button onclick="findBlood()">
-                Find Blood
-            </button>
+</section>
 
-            <button onclick="registerDonor()">
-                Register as Donor
-            </button>
+<section id="findBlood" class="section">
 
-        </div>
+    <h2>Find Blood</h2>
 
-    </section>
+    <form onsubmit="searchBlood(); return false;">
 
-
-    <!-- FIND BLOOD -->
-
-    <section class="section" id="find">
-
-        <h2>Find Blood</h2>
-
-        <p>Select a blood group to find available donors.</p>
+        <label>Select Blood Group:</label>
 
         <select id="bloodGroup">
-
-            <option value="">
-                Select Blood Group
-            </option>
-
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-
-        </select>
-
-        <button onclick="searchBlood()">
-            Search
-        </button>
-
-        <div id="searchResult"></div>
-
-    </section>
-
-
-    <!-- DONOR REGISTRATION -->
-
-    <section class="section" id="donor">
-
-        <h2>Become a Blood Donor</h2>
-
-        <p>Register yourself and help someone in need.</p>
-
-        <form id="donorForm">
-
-            <input
-                type="text"
-                id="donorName"
-                placeholder="Full Name"
-                required
-            >
-
-            <input
-                type="number"
-                id="donorAge"
-                placeholder="Age"
-                required
-            >
-
-            <select id="donorBloodGroup" required>
-
-                <option value="">
-                    Select Blood Group
-                </option>
-
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B-">B-</option>
-                <option value="O+">O+</option>
-                <option value="O-">O-</option>
-                <option value="AB+">AB+</option>
-                <option value="AB-">AB-</option>
-
-            </select>
-
-            <input
-                type="tel"
-                id="donorPhone"
-                placeholder="Phone Number"
-                required
-            >
-
-            <input
-                type="text"
-                id="donorLocation"
-                placeholder="Location"
-                required
-            >
-
-            <br>
-
-            <button
-                type="button"
-                onclick="registerDonorForm()"
-            >
-                Register as Donor
-            </button>
-
-        </form>
-
-        <div id="donorResult"></div>
-
-    </section>
-    <!-- REQUEST BLOOD -->
-
-<section class="section" id="request">
-    <h2>Request Blood</h2>
-    <p>Enter your details to request blood.</p>
-
-    <form id="requestForm">
-
-        <input type="text" id="patientName"
-               placeholder="Patient Name" required>
-
-        <input type="number" id="patientAge"
-               placeholder="Age" required>
-
-        <select id="requiredBloodGroup" required>
             <option value="">Select Blood Group</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
             <option value="B+">B+</option>
             <option value="B-">B-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
             <option value="AB+">AB+</option>
             <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
         </select>
 
-        <input type="tel" id="patientPhone"
-               placeholder="Phone Number" required>
-
-        <input type="text" id="patientLocation"
-               placeholder="Location" required>
-
-        <br>
-
-        <button type="button" onclick="requestBlood()">
-            Request Blood
-        </button>
+        <button type="submit">Search Blood</button>
 
     </form>
 
-    <div id="requestResult"></div>
+    <div id="searchResult" class="result"></div>
+
 </section>
 
-<!-- DONOR MANAGEMENT -->
+<section id="donor" class="section">
 
-<section class="section" id="donorManagement">
+    <h2>Become a Donor</h2>
+
+    <form onsubmit="registerDonorForm(); return false;">
+
+        <label>Full Name:</label>
+        <input type="text" placeholder="Full Name" required>
+
+        <label>Age:</label>
+        <input type="number" placeholder="Age" required>
+
+        <label>Blood Group:</label>
+        <select required>
+            <option value="">Select Blood Group</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select>
+
+        <label>Phone Number:</label>
+        <input type="tel" placeholder="Phone Number" required>
+
+        <label>Location:</label>
+        <input type="text" placeholder="Location" required>
+
+        <button type="submit">Register as Donor</button>
+
+    </form>
+
+    <div id="donorResult" class="result"></div>
+
+</section>
+<section id="request" class="section">
+
+    <h2>Request Blood</h2>
+
+    <form onsubmit="requestBlood(); return false;">
+
+        <label>Patient Name:</label>
+        <input type="text" id="patientName" placeholder="Patient Name" required>
+
+        <label>Age:</label>
+        <input type="number" id="patientAge" placeholder="Age" required>
+
+        <label>Blood Group:</label>
+        <select id="requestBloodGroup" required>
+            <option value="">Select Blood Group</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select>
+
+        <label>Phone Number:</label>
+        <input type="tel" id="patientPhone" placeholder="Phone Number" required>
+
+        <label>Location:</label>
+        <input type="text" id="patientLocation" placeholder="Location" required>
+
+        <button type="submit">Request Blood</button>
+
+    </form>
+
+    <div id="requestResult" class="result"></div>
+
+</section>
+
+
+<section id="donorManagement" class="section">
 
     <h2>Donor Management</h2>
 
-    <p>View and manage registered blood donors.</p>
+    <button onclick="displayDonors()">View Registered Donors</button>
 
-    <select id="managementBloodGroup">
-        <option value="">All Blood Groups</option>
-        <option value="A+">A+</option>
-        <option value="A-">A-</option>
-        <option value="B+">B+</option>
-        <option value="B-">B-</option>
-        <option value="O+">O+</option>
-        <option value="O-">O-</option>
-        <option value="AB+">AB+</option>
-        <option value="AB-">AB-</option>
-    </select>
-
-    <button onclick="displayDonors()">
-        View Donors
-    </button>
-
-    <div id="managementDonorResult"></div>
+    <div id="donorList" class="result"></div>
 
 </section>
 
 
-    <!-- CONTACT -->
+<section id="requestManagement" class="section">
 
-    <section class="section" id="contact">
+    <h2>Blood Request Management</h2>
 
-        <h2>Contact Us</h2>
+    <form onsubmit="displayBloodRequests(); return false;">
 
-        <p>
-            Email: bloodmanagement@example.com
-        </p>
+        <label>Select Blood Group:</label>
 
-        <p>
-            Phone: +91 9876543210
-        </p>
+        <select id="managementBloodGroup" required>
+            <option value="">Select Blood Group</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select>
 
-    </section>
+        <button type="submit">View Requests</button>
 
+    </form>
 
-    <!-- FOOTER -->
+    <div id="requestList" class="result"></div>
 
-    <footer>
-
-        <p>
-            © 2026 Blood Management System
-        </p>
-
-    </footer>
-
-
-    <!-- JAVASCRIPT -->
-
-    <script>
-
-        /*
-        Remove duplicate donors automatically
-        */
-
-        let donors =
-            JSON.parse(localStorage.getItem("donors")) || [];
-
-        let uniqueDonors = [];
-
-        donors.forEach(function(donor) {
-
-            const alreadyExists =
-                uniqueDonors.some(function(item) {
-
-                    return item.phone === donor.phone;
-
-                });
-
-            if (!alreadyExists) {
-
-                uniqueDonors.push(donor);
-
-            }
-
-        });
-
-        localStorage.setItem(
-            "donors",
-            JSON.stringify(uniqueDonors)
-        );
+</section>
 
 
-        // Go to Find Blood
+<section id="contact" class="section">
 
-        function findBlood() {
+    <h2>Contact</h2>
 
-            document
-                .getElementById("find")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
+    <p style="text-align:center;">
+        For blood donation and emergency requests, please contact
+        the blood management team.
+    </p>
 
+    <p style="text-align:center; margin-top:10px;">
+        📞 Phone: +91 XXXXX XXXXX
+    </p>
+
+    <p style="text-align:center;">
+        📧 Email: bloodmanagement@example.com
+    </p>
+
+</section>
+
+
+<footer>
+    <p>© 2026 Blood Management System | Save Lives ❤️</p>
+</footer>
+<script>
+
+function getDonors() {
+    return JSON.parse(localStorage.getItem("donors")) || [];
+}
+
+
+// Remove duplicate donors
+function removeDuplicateDonors() {
+
+    const donors = getDonors();
+
+    const uniqueDonors = [];
+
+    const phoneNumbers = new Set();
+
+    donors.forEach(function(donor) {
+
+        if (!phoneNumbers.has(donor.phone)) {
+
+            phoneNumbers.add(donor.phone);
+
+            uniqueDonors.push(donor);
         }
 
+    });
 
-        // Go to Donor Registration
+    localStorage.setItem("donors", JSON.stringify(uniqueDonors));
+}
 
-        function registerDonor() {
 
-            document
-                .getElementById("donor")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
+// Scroll to section
+function scrollToSection(id) {
 
-        }
+    document.getElementById(id).scrollIntoView({
+        behavior: "smooth"
+    });
+}
 
 
-        // Register Donor
+// Register donor
+function registerDonorForm() {
 
-        function registerDonorForm() {
+    const name = document.querySelector(
+        'input[placeholder="Full Name"]'
+    ).value;
 
-            const name =
-                document.getElementById("donorName").value;
+    const age = document.querySelector(
+        'input[placeholder="Age"]'
+    ).value;
 
-            const age =
-                document.getElementById("donorAge").value;
+    const bloodGroup = document.querySelector(
+        '#donor select'
+    ).value;
 
-            const bloodGroup =
-                document.getElementById(
-                    "donorBloodGroup"
-                ).value;
+    const phone = document.querySelector(
+        'input[placeholder="Phone Number"]'
+    ).value;
 
-            const phone =
-                document.getElementById("donorPhone").value;
+    const location = document.querySelector(
+        'input[placeholder="Location"]'
+    ).value;
 
-            const location =
-                document.getElementById(
-                    "donorLocation"
-                ).value;
 
+    let donors = getDonors();
 
-            // Check fields
 
-            if (
-                name === "" ||
-                age === "" ||
-                bloodGroup === "" ||
-                phone === "" ||
-                location === ""
-            ) {
+    // Check duplicate phone number
+    const alreadyExists = donors.some(function(donor) {
 
-                alert(
-                    "Please fill all the details."
-                );
+        return donor.phone === phone;
 
-                return;
+    });
 
-            }
 
+    if (alreadyExists) {
 
-            // Get donors
-
-            let donors =
-                JSON.parse(
-                    localStorage.getItem("donors")
-                ) || [];
-
-
-            // Check duplicate phone number
-
-            const existingDonor =
-                donors.find(function(donor) {
-
-                    return donor.phone === phone;
-
-                });
-
-
-            if (existingDonor) {
-
-                alert(
-                    "This donor is already registered."
-                );
-
-                return;
-
-            }
-
-
-            // Create donor
-
-            const donor = {
-
-                name: name,
-                age: age,
-                bloodGroup: bloodGroup,
-                phone: phone,
-                location: location
-
-            };
-
-
-            // Add donor
-
-            donors.push(donor);
-
-
-            // Save donor
-
-            localStorage.setItem(
-                "donors",
-                JSON.stringify(donors)
-            );
-
-
-            // Success message
-
-            document.getElementById(
-                "donorResult"
-            ).innerHTML =
-
-                "<h3>✅ Donor registered successfully!</h3>" +
-
-                "<p><strong>Name:</strong> " +
-                name +
-                "</p>" +
-
-                "<p><strong>Age:</strong> " +
-                age +
-                "</p>" +
-
-                "<p><strong>Blood Group:</strong> " +
-                bloodGroup +
-                "</p>" +
-
-                "<p><strong>Phone:</strong> " +
-                phone +
-                "</p>" +
-
-                "<p><strong>Location:</strong> " +
-                location +
-                "</p>";
-
-
-            // Clear form
-
-            document
-                .getElementById("donorForm")
-                .reset();
-
-        }
-
-
-        // Search Blood
-
-        function searchBlood() {
-
-            const bloodGroup =
-                document.getElementById(
-                    "bloodGroup"
-                ).value;
-
-
-            const result =
-                document.getElementById(
-                    "searchResult"
-                );
-
-
-            if (bloodGroup === "") {
-
-                result.innerHTML =
-                    "<p>Please select a blood group.</p>";
-
-                return;
-
-            }
-
-
-            // Get donors
-
-            const donors =
-                JSON.parse(
-                    localStorage.getItem("donors")
-                ) || [];
-
-
-            // Find matching donors
-
-            const matchingDonors =
-                donors.filter(function(donor) {
-
-                    return donor.bloodGroup === bloodGroup;
-
-                });
-
-
-            // No donors
-
-            if (matchingDonors.length === 0) {
-
-                result.innerHTML =
-
-                    "<h3>No donors found</h3>" +
-
-                    "<p>No registered donor is available for " +
-                    bloodGroup +
-                    " blood group.</p>";
-
-                return;
-
-            }
-
-
-            // Display donors
-
-            let output =
-                "<h2>" +
-                bloodGroup +
-                " Blood Donors</h2>";
-
-
-            matchingDonors.forEach(
-                function(donor) {
-
-                    output +=
-
-                        "<div class='card'>" +
-
-                        "<h3>" +
-                        donor.name +
-                        "</h3>" +
-
-                        "<p><strong>Age:</strong> " +
-                        donor.age +
-                        "</p>" +
-
-                        "<p><strong>Blood Group:</strong> " +
-                        donor.bloodGroup +
-                        "</p>" +
-
-                        "<p><strong>Phone:</strong> " +
-                        donor.phone +
-                        "</p>" +
-
-                        "<p><strong>Location:</strong> " +
-                        donor.location +
-                        "</p>" +
-
-                        "<a href='tel:" + donor.phone + "'><button type='button'>📞 Call Donor</button></a>" +
-
-                         "</div>";
-
-                }
-            );
-
-
-            result.innerHTML = output;
-
-        }
-        // Display Registered Donors
-
-function displayDonors() {
-
-    const selectedGroup =
-        document.getElementById("managementBloodGroup").value;
-
-    const donors =
-        JSON.parse(localStorage.getItem("donors")) || [];
-
-    const result =
-        document.getElementById("managementDonorResult");
-
-    const filteredDonors = selectedGroup === ""
-        ? donors
-        : donors.filter(function(donor) {
-            return donor.bloodGroup === selectedGroup;
-        });
-
-    if (filteredDonors.length === 0) {
-
-        result.innerHTML =
-            "<h3>No donors found</h3>";
+        document.getElementById("donorResult").innerHTML =
+            "<p>⚠️ This phone number is already registered.</p>";
 
         return;
     }
 
-    let output =
-        "<h2>Registered Donors</h2>";
 
-    filteredDonors.forEach(function(donor) {
+    const donor = {
 
-        output +=
-            "<div class='card'>" +
-            "<h3>" + donor.name + "</h3>" +
-            "<p><strong>Age:</strong> " +
-            donor.age + "</p>" +
-            "<p><strong>Blood Group:</strong> " +
-            donor.bloodGroup + "</p>" +
-            "<p><strong>Phone:</strong> " +
-            donor.phone + "</p>" +
-            "<p><strong>Location:</strong> " +
-            donor.location + "</p>" +
+        name: name,
 
-            "<button onclick=\"deleteDonor('" +
-            donor.phone +
-            "')\">Delete Donor</button>" +
+        age: age,
 
-            "</div>";
-    });
+        bloodGroup: bloodGroup,
 
-    result.innerHTML = output;
-}
+        phone: phone,
+
+        location: location
+
+    };
 
 
-// Delete Donor
-
-function deleteDonor(phone) {
-
-    let donors =
-        JSON.parse(localStorage.getItem("donors")) || [];
-
-    donors = donors.filter(function(donor) {
-        return donor.phone !== phone;
-    });
+    donors.push(donor);
 
     localStorage.setItem(
         "donors",
         JSON.stringify(donors)
     );
 
+
+    document.getElementById("donorResult").innerHTML =
+        "<p>✅ Donor registered successfully!</p>";
+
+
+    document.querySelector(
+        '#donor form'
+    ).reset();
+
+
     displayDonors();
 }
-        function requestBlood() {
-    const name = document.getElementById("patientName").value;
-    const age = document.getElementById("patientAge").value;
-    const bloodGroup = document.getElementById("requiredBloodGroup").value;
-    const phone = document.getElementById("patientPhone").value;
-    const location = document.getElementById("patientLocation").value;
 
-    if (name === "" || age === "" || bloodGroup === "" || phone === "" || location === "") {
-        alert("Please fill all the details.");
+
+// Search blood
+function searchBlood() {
+
+    const bloodGroup =
+        document.getElementById("bloodGroup").value;
+
+
+    if (!bloodGroup) {
+
+        document.getElementById("searchResult").innerHTML =
+            "<p>Please select a blood group.</p>";
+
         return;
     }
 
-    const donors = JSON.parse(localStorage.getItem("donors")) || [];
 
-const matchingDonors = donors.filter(function(donor) {
-    return donor.bloodGroup === bloodGroup;
-});
+    const donors = getDonors();
 
-let output =
-    "<h3>✅ Blood request submitted successfully!</h3>" +
-    "<p><strong>Patient Name:</strong> " + name + "</p>" +
-    "<p><strong>Required Blood Group:</strong> " + bloodGroup + "</p>";
 
-if (matchingDonors.length > 0) {
-    output += "<h3>🩸 Matching Donors</h3>";
+    const matchingDonors = donors.filter(function(donor) {
+
+        return donor.bloodGroup === bloodGroup;
+
+    });
+
+
+    if (matchingDonors.length === 0) {
+
+        document.getElementById("searchResult").innerHTML =
+            "<p>No registered donor is available for " +
+            bloodGroup +
+            " blood group.</p>";
+
+        return;
+    }
+
+
+    let output =
+        "<h3>Available Donors</h3>";
+
 
     matchingDonors.forEach(function(donor) {
-        output +=
-            "<div class='card'>" +
-            "<h3>" + donor.name + "</h3>" +
-            "<p><strong>Blood Group:</strong> " + donor.bloodGroup + "</p>" +
-            "<p><strong>Location:</strong> " + donor.location + "</p>" +
-            "<p><strong>Phone:</strong> " + donor.phone + "</p>" +
-            "<a href='tel:" + donor.phone + "'>" +
-            "<button type='button'>📞 Call Donor</button>" +
-            "</a>" +
-            "</div>";
+
+        output += `
+
+            <div class="donor-card">
+
+                <p><strong>Name:</strong>
+                ${donor.name}</p>
+
+                <p><strong>Age:</strong>
+                ${donor.age}</p>
+
+                <p><strong>Blood Group:</strong>
+                ${donor.bloodGroup}</p>
+
+                <p><strong>Location:</strong>
+                ${donor.location}</p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    <a href="tel:${donor.phone}">
+                        ${donor.phone}
+                    </a>
+                </p>
+
+                <a href="tel:${donor.phone}">
+                    <button type="button">
+                        📞 Call Donor
+                    </button>
+                </a>
+
+            </div>
+
+        `;
+
     });
-} else {
-    output +=
-        "<p>No matching donor is currently available for " +
-        bloodGroup + ".</p>";
+
+
+    document.getElementById("searchResult").innerHTML =
+        output;
 }
 
-document.getElementById("requestResult").innerHTML = output;
 
-    document.getElementById("requestForm").reset();
+// Display donors
+function displayDonors() {
+
+    removeDuplicateDonors();
+
+
+    const donors = getDonors();
+
+
+    const donorList =
+        document.getElementById("donorList");
+
+
+    if (donors.length === 0) {
+
+        donorList.innerHTML =
+            "<p>No registered donors found.</p>";
+
+        return;
+    }
+
+
+    let output =
+        "<h3>Registered Donors</h3>";
+
+
+    donors.forEach(function(donor, index) {
+
+        output += `
+
+            <div class="donor-card">
+
+                <p><strong>Name:</strong>
+                ${donor.name}</p>
+
+                <p><strong>Age:</strong>
+                ${donor.age}</p>
+
+                <p><strong>Blood Group:</strong>
+                ${donor.bloodGroup}</p>
+
+                <p><strong>Phone:</strong>
+                ${donor.phone}</p>
+
+                <p><strong>Location:</strong>
+                ${donor.location}</p>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteDonor(${index})">
+                    Delete Donor
+                </button>
+
+            </div>
+
+        `;
+
+    });
+
+
+    donorList.innerHTML = output;
 }
 
-    </script>
+
+// Delete donor
+function deleteDonor(index) {
+
+    let donors = getDonors();
+
+
+    donors.splice(index, 1);
+
+
+    localStorage.setItem(
+        "donors",
+        JSON.stringify(donors)
+    );
+
+
+    displayDonors();
+}
+
+
+// Save blood request
+function saveBloodRequest(request) {
+
+    let requests =
+        JSON.parse(
+            localStorage.getItem("bloodRequests")
+        ) || [];
+
+
+    request.id = Date.now();
+
+    request.status = "Pending";
+
+
+    requests.push(request);
+
+
+    localStorage.setItem(
+        "bloodRequests",
+        JSON.stringify(requests)
+    );
+}
+// Request blood
+function requestBlood() {
+
+    const patientName =
+        document.getElementById("patientName").value;
+
+    const age =
+        document.getElementById("patientAge").value;
+
+    const bloodGroup =
+        document.getElementById("requestBloodGroup").value;
+
+    const phone =
+        document.getElementById("patientPhone").value;
+
+    const location =
+        document.getElementById("patientLocation").value;
+
+
+    const bloodRequest = {
+
+        patientName: patientName,
+
+        age: age,
+
+        bloodGroup: bloodGroup,
+
+        phone: phone,
+
+        location: location
+
+    };
+
+
+    saveBloodRequest(bloodRequest);
+
+
+    document.getElementById("requestResult").innerHTML =
+        "<p>✅ Blood request submitted successfully!</p>";
+
+
+    document.querySelector("#request form").reset();
+
+
+    displayBloodRequests();
+}
+
+
+// Display blood requests
+function displayBloodRequests() {
+
+    const bloodGroup =
+        document.getElementById("managementBloodGroup").value;
+
+
+    let requests =
+        JSON.parse(
+            localStorage.getItem("bloodRequests")
+        ) || [];
+
+
+    const matchingRequests =
+        requests.filter(function(request) {
+
+            return request.bloodGroup === bloodGroup;
+
+        });
+
+
+    const requestList =
+        document.getElementById("requestList");
+
+
+    if (matchingRequests.length === 0) {
+
+        requestList.innerHTML =
+            "<p>No blood requests found for " +
+            bloodGroup +
+            ".</p>";
+
+        return;
+    }
+
+
+    let output =
+        "<h3>Blood Requests</h3>";
+
+
+    matchingRequests.forEach(function(request) {
+
+        output += `
+
+            <div class="request-card">
+
+                <p>
+                    <strong>Patient Name:</strong>
+                    ${request.patientName}
+                </p>
+
+                <p>
+                    <strong>Age:</strong>
+                    ${request.age}
+                </p>
+
+                <p>
+                    <strong>Blood Group:</strong>
+                    ${request.bloodGroup}
+                </p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    ${request.phone}
+                </p>
+
+                <p>
+                    <strong>Location:</strong>
+                    ${request.location}
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    <span class="${
+                        request.status === "Pending"
+                        ? "pending"
+                        : "fulfilled"
+                    }">
+                        ${request.status}
+                    </span>
+                </p>
+
+                ${
+                    request.status === "Pending"
+                    ? `
+                        <button
+                            onclick="fulfillRequest(${request.id})">
+                            ✅ Mark as Fulfilled
+                        </button>
+                    `
+                    : `
+                        <p>✅ Blood request completed.</p>
+                    `
+                }
+
+            </div>
+
+        `;
+
+    });
+
+
+    requestList.innerHTML = output;
+}
+
+
+// Mark request as fulfilled
+function fulfillRequest(requestId) {
+
+    let requests =
+        JSON.parse(
+            localStorage.getItem("bloodRequests")
+        ) || [];
+
+
+    const request =
+        requests.find(function(item) {
+
+            return item.id === requestId;
+
+        });
+
+
+    if (request) {
+
+        request.status = "Fulfilled";
+
+    }
+
+
+    localStorage.setItem(
+        "bloodRequests",
+        JSON.stringify(requests)
+    );
+
+
+    displayBloodRequests();
+}
+
+
+// Remove duplicate donors when page loads
+removeDuplicateDonors();
+
+</script>
 
 </body>
-
 </html>
