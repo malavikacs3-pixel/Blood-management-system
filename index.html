@@ -12,188 +12,351 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background: #fff;
+    background: #fffafa;
     color: #333;
     line-height: 1.6;
 }
 
+/* Header */
 header {
-    background: #b30000;
+    background: linear-gradient(135deg, #b30000, #700000);
     color: white;
-    padding: 15px 30px;
+    padding: 18px 35px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
 }
 
 header h1 {
     font-size: 24px;
+    letter-spacing: 0.5px;
 }
 
 nav {
     display: flex;
-    gap: 15px;
+    gap: 8px;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    background: white;
+    color: #b30000;
+    transform: translateY(-2px);
 }
 
+/* Hero */
 .hero {
-    background: #ffe6e6;
+    background:
+        linear-gradient(rgba(255,235,235,0.92), rgba(255,248,248,0.95));
     text-align: center;
-    padding: 60px 20px;
+    padding: 95px 20px;
 }
 
 .hero h2 {
     color: #b30000;
-    font-size: 36px;
+    font-size: 44px;
     margin-bottom: 15px;
+    font-weight: bold;
 }
 
 .hero p {
-    font-size: 18px;
+    font-size: 20px;
+    color: #555;
 }
 
+/* Home Cards */
 .home-cards {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    padding: 40px 20px;
+    gap: 25px;
+    padding: 55px 20px;
     flex-wrap: wrap;
+    background: #ffffff;
 }
 
 .home-card {
     background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 25px;
-    width: 280px;
+    border: none;
+    border-top: 5px solid #b30000;
+    border-radius: 15px;
+    padding: 30px 25px;
+    width: 290px;
     text-align: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+    transition: all 0.3s ease;
+}
+
+.home-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 28px rgba(179,0,0,0.20);
 }
 
 .home-card h3 {
     color: #b30000;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-size: 21px;
 }
 
+.home-card p {
+    color: #666;
+}
+
+/* Sections */
 .section {
-    padding: 40px 20px;
-    max-width: 1000px;
+    padding: 65px 20px;
+    max-width: 1050px;
     margin: auto;
 }
 
 .section h2 {
     color: #b30000;
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
+    font-size: 31px;
 }
 
-form {
-    max-width: 600px;
-    margin: auto;
-    background: #fff5f5;
-    padding: 25px;
+.section h2::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 4px;
+    background: #b30000;
+    margin: 10px auto 0;
     border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Forms */
+form {
+    max-width: 620px;
+    margin: auto;
+    background: white;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.10);
+    border-top: 5px solid #b30000;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    color: #444;
+    margin-top: 5px;
 }
 
 input,
 select {
     width: 100%;
-    padding: 12px;
-    margin: 8px 0 15px;
+    padding: 13px 14px;
+    margin: 8px 0 18px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #fff;
+    transition: all 0.3s ease;
 }
 
+input:focus,
+select:focus {
+    border-color: #b30000;
+    outline: none;
+    box-shadow: 0 0 7px rgba(179,0,0,0.18);
+}
+
+/* Buttons */
 button {
-    background: #b30000;
+    background: linear-gradient(135deg, #b30000, #800000);
     color: white;
     border: none;
-    padding: 12px 20px;
-    border-radius: 5px;
+    padding: 12px 22px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background: #800000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(128,0,0,0.30);
 }
 
+button:active {
+    transform: scale(0.98);
+}
+
+/* Results */
 .result {
-    margin-top: 20px;
-    padding: 15px;
-    background: #fff0f0;
-    border-radius: 8px;
+    margin: 28px auto 0;
+    padding: 22px;
+    background: #fff5f5;
+    border-radius: 12px;
+    max-width: 750px;
+    border-left: 5px solid #b30000;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
 }
 
+/* Donor and Request Cards */
 .donor-card,
 .request-card {
     background: white;
-    border: 1px solid #ddd;
+    border: 1px solid #eee;
     border-left: 5px solid #b30000;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
+    padding: 20px;
+    margin: 16px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
 }
 
-.status {
+.donor-card:hover,
+.request-card:hover {
+    transform: translateX(4px);
+    box-shadow: 0 7px 18px rgba(179,0,0,0.12);
+}
+
+.donor-card p,
+.request-card p {
+    margin-bottom: 7px;
+}
+
+.donor-card a {
+    color: #b30000;
     font-weight: bold;
+    text-decoration: none;
+}
+
+.donor-card a:hover {
+    text-decoration: underline;
 }
 
 .pending {
-    color: orange;
+    color: #e69500;
+    font-weight: bold;
 }
 
 .fulfilled {
     color: green;
+    font-weight: bold;
 }
 
+/* Delete Button */
 .delete-btn {
     background: #555;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .delete-btn:hover {
     background: #333;
 }
 
-footer {
-    background: #800000;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 30px;
+/* Contact */
+#contact {
+    background: linear-gradient(135deg, #fff0f0, #fff8f8);
+    border-radius: 16px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.06);
 }
 
-@media (max-width: 600px) {
+/* Footer */
+footer {
+    background: linear-gradient(135deg, #800000, #4d0000);
+    color: white;
+    text-align: center;
+    padding: 28px;
+    margin-top: 35px;
+}
+
+footer p {
+    font-size: 15px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 700px) {
+
     header {
         flex-direction: column;
         gap: 15px;
+        text-align: center;
+        padding: 18px 15px;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    nav {
+        gap: 5px;
+    }
+
+    nav a {
+        font-size: 12px;
+        padding: 7px 9px;
+    }
+
+    .hero {
+        padding: 65px 15px;
     }
 
     .hero h2 {
-        font-size: 28px;
+        font-size: 30px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .home-cards {
+        padding: 40px 15px;
     }
 
     .home-card {
         width: 100%;
+        max-width: 400px;
+    }
+
+    .section {
+        padding: 45px 15px;
+    }
+
+    .section h2 {
+        font-size: 26px;
+    }
+
+    form {
+        padding: 23px 18px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .result {
+        padding: 16px;
     }
 }
 </style>
-</head>
+<head>
 
 <body>
 
@@ -236,7 +399,6 @@ footer {
 </section>
 
 <section id="findBlood" class="section">
-
     <h2>Find Blood</h2>
 
     <form onsubmit="searchBlood(); return false;">
@@ -256,11 +418,9 @@ footer {
         </select>
 
         <button type="submit">Search Blood</button>
-
     </form>
 
     <div id="searchResult" class="result"></div>
-
 </section>
 
 <section id="donor" class="section">
@@ -295,12 +455,11 @@ footer {
         <input type="text" placeholder="Location" required>
 
         <button type="submit">Register as Donor</button>
-
     </form>
 
     <div id="donorResult" class="result"></div>
-
 </section>
+
 <section id="request" class="section">
 
     <h2>Request Blood</h2>
@@ -333,13 +492,10 @@ footer {
         <input type="text" id="patientLocation" placeholder="Location" required>
 
         <button type="submit">Request Blood</button>
-
     </form>
 
     <div id="requestResult" class="result"></div>
-
 </section>
-
 
 <section id="donorManagement" class="section">
 
@@ -348,9 +504,7 @@ footer {
     <button onclick="displayDonors()">View Registered Donors</button>
 
     <div id="donorList" class="result"></div>
-
 </section>
-
 
 <section id="requestManagement" class="section">
 
@@ -373,13 +527,10 @@ footer {
         </select>
 
         <button type="submit">View Requests</button>
-
     </form>
 
     <div id="requestList" class="result"></div>
-
 </section>
-
 
 <section id="contact" class="section">
 
@@ -397,27 +548,21 @@ footer {
     <p style="text-align:center;">
         📧 Email: bloodmanagement@example.com
     </p>
-
 </section>
-
 
 <footer>
     <p>© 2026 Blood Management System | Save Lives ❤️</p>
 </footer>
-<script>
 
+<script>
 function getDonors() {
     return JSON.parse(localStorage.getItem("donors")) || [];
 }
 
-
-// Remove duplicate donors
 function removeDuplicateDonors() {
 
     const donors = getDonors();
-
     const uniqueDonors = [];
-
     const phoneNumbers = new Set();
 
     donors.forEach(function(donor) {
@@ -425,8 +570,8 @@ function removeDuplicateDonors() {
         if (!phoneNumbers.has(donor.phone)) {
 
             phoneNumbers.add(donor.phone);
-
             uniqueDonors.push(donor);
+
         }
 
     });
@@ -434,17 +579,14 @@ function removeDuplicateDonors() {
     localStorage.setItem("donors", JSON.stringify(uniqueDonors));
 }
 
-
-// Scroll to section
 function scrollToSection(id) {
 
     document.getElementById(id).scrollIntoView({
         behavior: "smooth"
     });
+
 }
 
-
-// Register donor
 function registerDonorForm() {
 
     const name = document.querySelector(
@@ -467,17 +609,11 @@ function registerDonorForm() {
         'input[placeholder="Location"]'
     ).value;
 
-
     let donors = getDonors();
 
-
-    // Check duplicate phone number
     const alreadyExists = donors.some(function(donor) {
-
         return donor.phone === phone;
-
     });
-
 
     if (alreadyExists) {
 
@@ -487,21 +623,13 @@ function registerDonorForm() {
         return;
     }
 
-
     const donor = {
-
         name: name,
-
         age: age,
-
         bloodGroup: bloodGroup,
-
         phone: phone,
-
         location: location
-
     };
-
 
     donors.push(donor);
 
@@ -510,26 +638,20 @@ function registerDonorForm() {
         JSON.stringify(donors)
     );
 
-
     document.getElementById("donorResult").innerHTML =
         "<p>✅ Donor registered successfully!</p>";
-
 
     document.querySelector(
         '#donor form'
     ).reset();
 
-
     displayDonors();
 }
 
-
-// Search blood
 function searchBlood() {
 
     const bloodGroup =
         document.getElementById("bloodGroup").value;
-
 
     if (!bloodGroup) {
 
@@ -539,16 +661,11 @@ function searchBlood() {
         return;
     }
 
-
     const donors = getDonors();
 
-
     const matchingDonors = donors.filter(function(donor) {
-
         return donor.bloodGroup === bloodGroup;
-
     });
-
 
     if (matchingDonors.length === 0) {
 
@@ -560,10 +677,7 @@ function searchBlood() {
         return;
     }
 
-
-    let output =
-        "<h3>Available Donors</h3>";
-
+    let output = "<h3>Available Donors</h3>";
 
     matchingDonors.forEach(function(donor) {
 
@@ -597,29 +711,22 @@ function searchBlood() {
                 </a>
 
             </div>
-
         `;
 
     });
-
 
     document.getElementById("searchResult").innerHTML =
         output;
 }
 
-
-// Display donors
 function displayDonors() {
 
     removeDuplicateDonors();
 
-
     const donors = getDonors();
-
 
     const donorList =
         document.getElementById("donorList");
-
 
     if (donors.length === 0) {
 
@@ -629,10 +736,7 @@ function displayDonors() {
         return;
     }
 
-
-    let output =
-        "<h3>Registered Donors</h3>";
-
+    let output = "<h3>Registered Donors</h3>";
 
     donors.forEach(function(donor, index) {
 
@@ -662,36 +766,27 @@ function displayDonors() {
                 </button>
 
             </div>
-
         `;
 
     });
 
-
     donorList.innerHTML = output;
 }
 
-
-// Delete donor
 function deleteDonor(index) {
 
     let donors = getDonors();
 
-
     donors.splice(index, 1);
-
 
     localStorage.setItem(
         "donors",
         JSON.stringify(donors)
     );
 
-
     displayDonors();
 }
 
-
-// Save blood request
 function saveBloodRequest(request) {
 
     let requests =
@@ -699,21 +794,17 @@ function saveBloodRequest(request) {
             localStorage.getItem("bloodRequests")
         ) || [];
 
-
     request.id = Date.now();
-
     request.status = "Pending";
 
-
     requests.push(request);
-
 
     localStorage.setItem(
         "bloodRequests",
         JSON.stringify(requests)
     );
 }
-// Request blood
+
 function requestBlood() {
 
     const patientName =
@@ -731,48 +822,35 @@ function requestBlood() {
     const location =
         document.getElementById("patientLocation").value;
 
-
     const bloodRequest = {
 
         patientName: patientName,
-
         age: age,
-
         bloodGroup: bloodGroup,
-
         phone: phone,
-
         location: location
 
     };
 
-
     saveBloodRequest(bloodRequest);
-
 
     document.getElementById("requestResult").innerHTML =
         "<p>✅ Blood request submitted successfully!</p>";
 
-
     document.querySelector("#request form").reset();
-
 
     displayBloodRequests();
 }
 
-
-// Display blood requests
 function displayBloodRequests() {
 
     const bloodGroup =
         document.getElementById("managementBloodGroup").value;
 
-
     let requests =
         JSON.parse(
             localStorage.getItem("bloodRequests")
         ) || [];
-
 
     const matchingRequests =
         requests.filter(function(request) {
@@ -781,10 +859,8 @@ function displayBloodRequests() {
 
         });
 
-
     const requestList =
         document.getElementById("requestList");
-
 
     if (matchingRequests.length === 0) {
 
@@ -796,10 +872,7 @@ function displayBloodRequests() {
         return;
     }
 
-
-    let output =
-        "<h3>Blood Requests</h3>";
-
+    let output = "<h3>Blood Requests</h3>";
 
     matchingRequests.forEach(function(request) {
 
@@ -857,24 +930,19 @@ function displayBloodRequests() {
                 }
 
             </div>
-
         `;
 
     });
 
-
     requestList.innerHTML = output;
 }
 
-
-// Mark request as fulfilled
 function fulfillRequest(requestId) {
 
     let requests =
         JSON.parse(
             localStorage.getItem("bloodRequests")
         ) || [];
-
 
     const request =
         requests.find(function(item) {
@@ -883,27 +951,19 @@ function fulfillRequest(requestId) {
 
         });
 
-
     if (request) {
-
         request.status = "Fulfilled";
-
     }
-
 
     localStorage.setItem(
         "bloodRequests",
         JSON.stringify(requests)
     );
 
-
     displayBloodRequests();
 }
 
-
-// Remove duplicate donors when page loads
 removeDuplicateDonors();
-
 </script>
 
 </body>
